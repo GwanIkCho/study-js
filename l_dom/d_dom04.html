@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>CSS 선택자로 선택</title>
+    </head>
+    <body>
+        <h1>CSS 선택자로 선택</h1>
+        <p>갖고 싶은 위시 리스트</p>
+        <ul>
+            <li>집</li>
+            <li>맥북</li>
+            <li>땅</li>
+            <li>건물</li>
+            <li>아이폰14</li>
+            <li>아이폰12</li>
+        </ul>
+    </body>
+    <script>
+        const item = document.querySelectorAll("ul li");
+        item.forEach((item) => {
+            const check = item.innerText.includes("아이폰");
+            console.log(check);
+            if (check) {
+                item.style.color = "red";
+                item.style.fontSize = "30px";
+                return;
+            }
+            item.style.color = "blue";
+        });
+
+        // const items = document.querySelectorAll("ul li");
+        // // 내용에 아이폰이 들어간 태그의 스타일 중, fontSize는 30px,color : pink로 변경
+        // items.forEach((item) => {
+        //     const check = item.innerText.includes("아이폰");
+        //     if (check) {
+        //         item.style.color = "pink";
+        //         item.style.fontSize = "30px";
+        //     }
+        // });
+    </script>
+</html>

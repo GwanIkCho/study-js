@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>복습하기</title>
+        <style>
+            input {
+                outline: none;
+            }
+        </style>
+    </head>
+    <body>
+        <input type="text" placeholder="이름" autocomplete="off" />
+        <div id="info"></div>
+        <ul id="name"></ul>
+    </body>
+    <script>
+        const input = document.querySelector("input[type=text]");
+        const div = document.getElementById("info");
+        const ul = document.querySelector("#name");
+        const passwordRegex =
+            /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
+
+        input.addEventListener("keyup", (e) => {
+            if (e.keyCode === 13) {
+                if (!passwordRegex.test(input.value)) {
+                    div.innerText = "잘못된 입력입니다 다시 입력해주세요";
+                    input.style.border = "1px solid red";
+                    div.style.clolr = "red";
+                    e.target.value = "";
+                    return;
+                } else {
+                    ul.innerHTML += `<li>${e.target.value}</li>`;
+                    div.innerText = "안전한 비밀번호입니다!";
+                    input.style.border = "1px solid green";
+                    div.style.clolr = "green";
+                    e.target.value = "";
+                }
+            }
+        });
+        // console.log(e.keyCode);
+        // ul.innerHTML += `<li>${e.target.value}</li>`;
+        // e.target.value = "";
+    </script>
+</html>
+
+<!-- 
+
+    입력한 키 중, 엔터일 경우 ul안에 li태그로 입력한 문자열값을 추가한다.
+    이때, 작성한 값은 사라지게 한다(빈 문자열을 넣으면 해결가능).
+    ※ 아무것도 입력하지 않고 엔터를 치면, input에 빨간색 테두리 스타일 적용
+
+    1. 먼저 있는것들 (input,ul)담아주기 - 자꾸 습관적으로 소괄호 안하고 대괄호함 수정해야함 undefind나옴
+    2. input에 입력한거를 엔터 눌렀을때 값 옮겨줄수있게 만듬
+    3. li 태그로 입력한 문자열값 추가 - input에 입력한거를 li태그로 ul에 넣어줘야함
+       근데 넣는게 아니라 추가하는거라 = x += 임
+    4. 근데 값 사라지게 해야하니 본인값에 빈 문자열 추가
+    -------------------------------------------------------
+    정확한 값이면 리스트에 담아주고 값 이상하면 경고? 이상있다는 문구 날려줌
+    /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/ 값은
+    어제 사용했던 비밀번호 (8~16자 숫자,문자, 특수문자 1나씩 들어가야함)
+    1. 문자 날려줄 공간하나 만들기 - 담아주기
+    2. 정규화 만들어주기
+    3. 엔터를 입력했을때의 결과들을 만들어주기
+    4. 입력이 잘못되었을때의값, 잘 되었을때의 값 추가해주기
+    -------------------AS---------------------------------
+    1. div칸 남는거 없애주기 - 잘 입력되어도 입력값 만들어주기
+    2. 색상 추가해서 이쁘게 만들기
+    3. 이쁘게 만든김에 outline없애주기
+
+
+ -->

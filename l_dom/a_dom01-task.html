@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>클래스 이름 선택 실습</title>
+    </head>
+    <body>
+        <ul>
+            <li class="car ferrari">페라리</li>
+            <li class="car">람보르기니</li>
+            <li class="car">벤츠</li>
+        </ul>
+    </body>
+    <script>
+        HTMLCollection.prototype.forEach = Array.prototype.forEach;
+        // 자동차 중 ferrari만 빨간색 글자로 설정,
+        // 나머지 자동차는 글자 크기를 20xp로 설정(DOM객체.style.fontSize)
+
+        const car = document.querySelectorAll("ul li");
+        car.forEach((car) => {
+            const check = car.className.includes("ferrari");
+            console.log(check);
+            if (check) {
+                car.style.color = "red";
+                return;
+            }
+            car.style.fontSize = "20px";
+        });
+
+        // document.getElementsByClassName("car").forEach((car) => {
+        //     car.className.includes("ferrari")
+        //         ? (car.style.color = "red")
+        //         : (car.style.fontSize = "20px");
+        // });
+
+        // document.getElementsByClassName("car").forEach((car) => {
+        //     if (car.classList[1]) {
+        //         car.style.color = "red";
+        //         return;
+        //     }
+        //     car.style.fontSize = "20px";
+        // });
+    </script>
+</html>
+
+<!-- class는 getElementsByClassName을 통해서 뽑아오고 
+form 형태는 각각의 name을 통해 ex) document.name["name"]을 통해서 뽑아오고
+값들의 인덱스를 찾을때는 classList를 통해서 인덱스값에맞춰서 줄수도있고
+포함된 이름을 찾기 위한거는 className을 통해서 찾을수있음.
+form에서 value는 사실상 값이라고 생각하면 됨.
+getElementId는 해당되는 아이디를 뽑아옵니다. id는 단수이기 때문에 element에 s안들어감
+추가로 글자가 포함되었는지 확인할때는 innerText.includes("text")
+innerText("text")는 순수하게 그 글자를 나타냅니다.
+const items = document.querySelectorAll("ul li");
+querySelectorAll은 div,ul,li 이런것들 가져옵니다
+클론코딩할때 css담았던거? 그런 느낌으로 가져옵니다.
+저 위에는 All하면 다 저거 없으면 단일로만
+이거는 그냥사용 x 어디 담아다가 사용해야합니다 위에처럼
+
+
+-->
